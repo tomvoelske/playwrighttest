@@ -1,0 +1,22 @@
+{
+  "name": "playwrighttest",
+  "version": "1.0.0",
+  "description": "POC with Playwright",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tomvoelske/playwrighttest.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tomvoelske/playwrighttest/issues"
+  },
+  "homepage": "https://github.com/tomvoelske/playwrighttest#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.50.1",
+    "@types/node": "^22.13.1"
+  }
+}
