@@ -1,11 +1,11 @@
 // @ts-check
 import { test, expect } from '@playwright/test';
-const testFunction = require('../functions/test.js');
 const page_googleMain = require('../pages/google/main.js');
 const page_googleSearch = require('../pages/google/search.js');
+const page_skyscannerMain = require('../pages/skyscanner/main.js');
 
 test('Google loads and searches properly', async ({ page }) => {
-  
+
   await page_googleMain.navigateToPage(page);
   await page_googleMain.verifyTitle(page);
   await page_googleMain.clearTermsAndConditions(page);
@@ -14,17 +14,11 @@ test('Google loads and searches properly', async ({ page }) => {
 
 });
 
-/*
-test('get started link', async ({ page }) => {
-  await page.goto('https://playwright.dev/');
+test('Skyscanner loads and searches properly', async ({ page }) => {
 
-  // Click the get started link.
-  await page.getByRole('link', { name: 'Get started' }).click();
-
-  // Expects page to have a heading with the name of Installation.
-  await expect(page.getByRole('heading', { name: 'Installation' })).toBeVisible();
-
-  testFunction.testFunction();
+  await page_skyscannerMain.navigateToPage(page);
+  await page_skyscannerMain.verifyTitle(page);
+  await page_skyscannerMain.acceptPrivacyNotice(page);
+  await page.pause();
 
 });
-*/

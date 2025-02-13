@@ -1,8 +1,9 @@
 import { test, expect } from '@playwright/test';
+import { goToUrl } from '../../functions/goToUrl';     
 
 async function navigateToPage(page) {
 
-    await page.goto('https://www.google.com/');
+    await goToUrl(page, "https://www.google.com/");
 
 }
 
@@ -15,7 +16,6 @@ async function verifyTitle(page) {
 async function clearTermsAndConditions(page) {
 
     await page.getByText('Accept all', {exact: true}).click();
-    console.log("TOC clicked");
 
 }
 
