@@ -1,4 +1,4 @@
-# playwrighttest
+# Playwright Test
 
 ## Playwright proof of concept - idea is searching for Skyscanner and then attempting to proceed through the booking flow
 
