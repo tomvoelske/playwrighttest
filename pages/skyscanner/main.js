@@ -19,12 +19,17 @@ async function acceptPrivacyNotice(page) {
 
 }
 
+async function getListByLetter(page, letter) {
 
+    await page.getById('originInput-input').fill(letter);
+
+}
 
 module.exports = {
 
     navigateToPage,
     verifyTitle,
-    acceptPrivacyNotice
+    acceptPrivacyNotice,
+    getListByLetter
 
 }
