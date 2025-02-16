@@ -12,13 +12,13 @@ SKYSCANNER - strong anti-bot protections - overcoming this far outside of the sc
 
 OP.GG - non-commercial website for a very popular game with a large variety of characters and statistics, providing ample opportunities to test things
 
-##### Until otherwise stated, this is a WIP and thus may include incomplete features
+Until otherwise stated, this is a WIP and thus may include incomplete features
 
 I am just learning as I go, so it's very likely that I'm not applying best practises, etc.
 
-###### To Run
+##### To Run
 
-Use "npx playwright test <arg>"
+Use "npx playwright test (arg)"
 
 The arg is optional and can be a substring to match the file name (e.g. "op" will give you leagueopgg)
 
