@@ -29,40 +29,6 @@ async function checkChampionPage(page, championName) {
     // need to perform a progressive scroll so that certain elements load
     await progressiveScroll(page, 1000);
 
-    /*
-
-            let results = {
-
-            'heading': false,
-            'runes': false,
-            'summonerSpells': false,
-            'skillOrder': false,
-            'itemBuilds': false,
-            'combos': false,
-            'skins': false,
-            'counter': false,
-            //'masteryRanking': false,
-            'laningTips': false
-
-        }
-
-        let data = {
-
-            'heading': document.getElementsByClassName("whitespace-nowrap text-[15px] md:text-[24px] md:leading-[32px]")[0].innerText,
-            'runes': document.getElementsByClassName("flex items-center px-3 py-2 text-sm font-bold leading-5 text-gray-900")[0].innerText,
-            'summonerSpells': document.getElementsByClassName("px-3 py-2 text-sm font-bold leading-5 text-gray-900 flex gap-1")[0].innerText,
-            'skillOrder': document.getElementsByClassName("flex items-center px-3 py-2 text-sm font-bold leading-5 text-gray-900")[1].innerText,
-            'itemBuilds': document.getElementsByClassName("flex items-center px-3 py-2 text-sm font-bold leading-5 text-gray-900")[2].innerText,
-            'combos': document.getElementsByClassName("px-3 py-2 text-sm font-bold leading-5 text-gray-900")[6].innerText,
-            'skins': document.getElementsByClassName("px-3 py-2 text-sm font-bold leading-5 text-gray-900")[7].innerText,
-            'counter': document.getElementsByClassName("flex items-center px-3 py-2 text-sm font-bold leading-5 text-gray-900")[3].innerText,
-            //'masteryRanking': document.getElementsByClassName("flex items-center px-3 py-2 text-sm font-bold leading-5 text-gray-900")[4].innerText,
-            'laningTips': document.getElementsByClassName("px-3 py-2 text-sm font-bold leading-5 text-gray-900")[8].innerText
-
-        }
-
-    */
-
     let championData = await page.evaluate(async(championName) => {
 
         let results = {
@@ -75,6 +41,7 @@ async function checkChampionPage(page, championName) {
             'combos': false,
             'skins': false,
             'counter': false,
+            'masteryRanking': false,
             'laningTips': false
 
         }
@@ -89,6 +56,7 @@ async function checkChampionPage(page, championName) {
         let combos = document.getElementsByClassName("px-3 py-2 text-sm font-bold leading-5 text-gray-900")[6].innerText;
         let skins = document.getElementsByClassName("px-3 py-2 text-sm font-bold leading-5 text-gray-900")[7].innerText;
         let counter = document.getElementsByClassName("flex items-center px-3 py-2 text-sm font-bold leading-5 text-gray-900")[3].innerText;
+        let masteryRanking = document.getElementsByClassName("flex items-center px-3 py-2 text-sm font-bold leading-5 text-gray-900")[4].innerText;
         let laningTips = document.getElementsByClassName("px-3 py-2 text-sm font-bold leading-5 text-gray-900")[8].innerText;
 
         // TODO: incredibly weird bug - ReferenceError: value is not defined which shifts with spacing... probably IDE-related
@@ -103,6 +71,7 @@ async function checkChampionPage(page, championName) {
             'combos': combos,
             'skins': skins,
             'counter': counter,
+            'masteryRanking': masteryRanking,
             'laningTips': laningTips
 
         }
