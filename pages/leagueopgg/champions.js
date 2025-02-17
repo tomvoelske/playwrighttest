@@ -199,6 +199,28 @@ async function checkForCompleteChampionCoverage(page, gridData, tableData) {
 
 }
 
+async function checkGridLinks(page) {
+
+    const page_leagueOPGG_championBuildPage = require('./championBuildPage.js');
+
+    const champions = await page.$$('[class="flex flex-col gap-0.5"]');
+    for (let i = 0; i < champions.length; i++) {
+        
+        let championName = await champions[i].innerText();
+        if (championName == null) {
+            continue;
+        }
+
+        await champions[i].click();
+
+        await page_leagueOPGG_championBuildPage.checkChampionPage(page, championName);
+
+        await page.goBack();
+
+    }
+
+}
+
 async function changeToTab(page, tabName) {
 
     // formatting
@@ -245,6 +267,7 @@ module.exports = {
     getChampionListFromGrid,
     getChampionTableData,
     checkForCompleteChampionCoverage,
+    checkGridLinks,
     changeToTab
 
 }

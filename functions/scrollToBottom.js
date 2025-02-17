@@ -7,9 +7,9 @@ async function scrollToBottom(page) {
     while (scrollCount < maxScrolls) {
 
         // Execute JavaScript to scroll to the bottom of the page
-        await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
+        await page.evaluate(async () => window.scrollTo(0, document.body.scrollHeight));
 
-        await page.waitForTimeout(500); // wait for 500 milliseconds
+        await page.waitForTimeout(500);
 
         // Check whether the scroll height changed - means more pages are there
         const newHeight = await page.evaluate(() => document.body.scrollHeight);
