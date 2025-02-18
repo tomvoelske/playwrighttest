@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
-const page_googleMain = require('../pages/google/main.js');
-const page_googleSearch = require('../pages/google/search.js');
-const page_skyscannerMain = require('../pages/skyscanner/main.js');
+const page_googleMain = require('../../pages/google/main.js');
+const page_googleSearch = require('../../pages/google/search.js');
+const page_skyscannerMain = require('../../pages/skyscanner/main.js');
 
 test('Google loads and searches properly', async ({ page }) => {
 

@@ -24,8 +24,6 @@ async function checkChampionPage(page, championName) {
 
     assert(title.includes(championName), `Title does not include ${championName} - ${title}`);
 
-    console.log(championName);
-
     // need to perform a progressive scroll so that certain elements load
     await progressiveScroll(page, 1000);
 

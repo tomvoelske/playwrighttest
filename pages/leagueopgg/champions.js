@@ -199,7 +199,7 @@ async function checkForCompleteChampionCoverage(page, gridData, tableData) {
 
 }
 
-async function checkGridLinks(page) {
+async function checkGridLink(page, championName) {
 
     const page_leagueOPGG_championBuildPage = require('./championBuildPage.js');
 
@@ -208,21 +208,20 @@ async function checkGridLinks(page) {
 
     for (let i = 0; i < numberOfChampions; i++) {
 
-        champions = await page.$$('[class="flex flex-col gap-0.5"]');
-
-        // check that the overall champions count remains the same so the element hasn't mutated in the meantime
-        expect(champions.length, "Champions grid page must contain a constant number of champions").toEqual(numberOfChampions);
-        
-        let championName = await champions[i].innerText();
-        if (championName == null) {
+        let gridChampionName = await champions[i].innerText();
+        if (gridChampionName == null) {
             continue;
         }
 
-        await champions[i].click();
+        if (gridChampionName === championName) {
 
-        await page_leagueOPGG_championBuildPage.checkChampionPage(page, championName);
+            await champions[i].click();
 
-        await navigateToPage(page);  // returns to main champion page
+            await page_leagueOPGG_championBuildPage.checkChampionPage(page, championName);
+
+            break;
+
+        }
 
     }
 
@@ -274,7 +273,7 @@ module.exports = {
     getChampionListFromGrid,
     getChampionTableData,
     checkForCompleteChampionCoverage,
-    checkGridLinks,
+    checkGridLink,
     changeToTab
 
 }
