@@ -203,8 +203,15 @@ async function checkGridLinks(page) {
 
     const page_leagueOPGG_championBuildPage = require('./championBuildPage.js');
 
-    const champions = await page.$$('[class="flex flex-col gap-0.5"]');
-    for (let i = 0; i < champions.length; i++) {
+    let champions = await page.$$('[class="flex flex-col gap-0.5"]');
+    let numberOfChampions = champions.length;
+
+    for (let i = 0; i < numberOfChampions; i++) {
+
+        champions = await page.$$('[class="flex flex-col gap-0.5"]');
+
+        // check that the overall champions count remains the same so the element hasn't mutated in the meantime
+        expect(champions.length, "Champions grid page must contain a constant number of champions").toEqual(numberOfChampions);
         
         let championName = await champions[i].innerText();
         if (championName == null) {
@@ -215,7 +222,7 @@ async function checkGridLinks(page) {
 
         await page_leagueOPGG_championBuildPage.checkChampionPage(page, championName);
 
-        await page.goBack();
+        await navigateToPage(page);  // returns to main champion page
 
     }
 

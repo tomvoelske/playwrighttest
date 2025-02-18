@@ -59,8 +59,6 @@ async function checkChampionPage(page, championName) {
         let masteryRanking = document.getElementsByClassName("flex items-center px-3 py-2 text-sm font-bold leading-5 text-gray-900")[4].innerText;
         let laningTips = document.getElementsByClassName("px-3 py-2 text-sm font-bold leading-5 text-gray-900")[8].innerText;
 
-        // TODO: incredibly weird bug - ReferenceError: value is not defined which shifts with spacing... probably IDE-related
-
         let data = {
 
             'heading': heading,
@@ -89,7 +87,7 @@ async function checkChampionPage(page, championName) {
     }, [championName])
 
     for (let key in championData) {
-        await expect.soft(value, `${key} contains ${championName}`).toBe(true);
+        expect.soft(championData[key], `${key} contains ${championName}`).toBe(true);
     }
 
 }
