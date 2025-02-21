@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
-const page_leagueOPGG_main = require('../../pages/leagueopgg/main.js');
-const page_leagueOPGG_champions = require('../../pages/leagueopgg/champions.js');
+const {OPGG_MainPage} = require('../../pages/leagueopgg/opgg.main.page.js');
+const {OPGG_ChampionsPage} = require('../../pages/leagueopgg/opgg.champions.page.js');
 
 const fs = require('fs');
 const path = require('path');
@@ -29,17 +29,24 @@ const champions = [
     "Urgot", "Varus", "Vayne", "Veigar", "Vel'Koz", "Vex", "Vi", "Viego", "Viktor", "Vladimir", "Volibear", "Warwick", "Wukong", "Xayah", "Xerath", "Xin Zhao", "Yasuo", "Yone", "Yorick", "Yuumi", "Zac", "Zed", "Zeri", "Ziggs", "Zilean", "Zoe", "Zyra"
 ];
 
-for (const champion of champions) {
+const champions_limitedTest = ['Ahri'];  // for using to test a single page only
+
+//for (const champion of champions) {
+for (const champion of champions_limitedTest) {
 
     test(`Verify that the grid button for ${champion} takes you to their page and that it is correctly assigned`, async ({page}) => {
 
         test.setTimeout(60000);
 
-        await page_leagueOPGG_main.navigateToPage(page);
-        await page_leagueOPGG_main.verifyTitle(page);
-        await page_leagueOPGG_main.changeToTab(page, "CHAMPION");
-        await page_leagueOPGG_champions.clearPersonalDataConsent(page);
-        await page_leagueOPGG_champions.checkGridLink(page, champion);
+        const page_leagueOPGG_main = new OPGG_MainPage(page);
+        await page_leagueOPGG_main.navigateToPage();
+        await page_leagueOPGG_main.verifyTitle();
+        await page_leagueOPGG_main.clearTermsAndConditions();
+        await page_leagueOPGG_main.changeToTab("CHAMPION");
+
+        const page_leagueOPGG_champions = new OPGG_ChampionsPage(page);
+        await page_leagueOPGG_champions.clearPersonalDataConsent();
+        await page_leagueOPGG_champions.checkGridLink(champion);
     
     });
 
