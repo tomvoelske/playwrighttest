@@ -49,12 +49,9 @@ exports.OPGG_ChampionsPage = class OPGG_ChampionsPage {
     
         // need to perform a progressive scroll so that certain elements load
         await progressiveScroll(this.page, 1000);
+    
+        let championData = await this.page.evaluate(async function([championName, sectionHeadings]) {
 
-        console.log(this.sectionHeadings)['heading']['locator'];
-        console.log(this.sectionHeadings)['heading']['index'];
-    
-        let championData = await this.page.evaluate(async(championName, sectionHeadings) => {
-    
             let results = {
     
                 'heading': false,
@@ -109,7 +106,7 @@ exports.OPGG_ChampionsPage = class OPGG_ChampionsPage {
             return results;
     
         }, [championName, this.sectionHeadings]);
-    
+
         for (let key in championData) {
             expect.soft(championData[key], `${key} contains ${championName}`).toBe(true);
         }

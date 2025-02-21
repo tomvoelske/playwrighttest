@@ -31,8 +31,8 @@ const champions = [
 
 const champions_limitedTest = ['Ahri'];  // for using to test a single page only
 
-//for (const champion of champions) {
-for (const champion of champions_limitedTest) {
+for (const champion of champions) {
+//for (const champion of champions_limitedTest) {
 
     test(`Verify that the grid button for ${champion} takes you to their page and that it is correctly assigned`, async ({page}) => {
 
