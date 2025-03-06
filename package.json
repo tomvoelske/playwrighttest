@@ -17,7 +17,7 @@
   "homepage": "https://github.com/tomvoelske/playwrighttest#readme",
   "devDependencies": {
     "@playwright/test": "^1.50.1",
-    "@types/node": "^22.13.1"
+    "@types/node": "^22.13.9"
   },
   "dependencies": {
     "csv-parse": "^5.6.0"

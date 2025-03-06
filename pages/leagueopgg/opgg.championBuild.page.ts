@@ -1,6 +1,5 @@
 import { Page, test, expect } from '@playwright/test';
 import { progressiveScroll } from '../../functions/progressiveScroll';
-import assert from 'assert';
 
 interface SectionHeadings {
     [key: string]: { locator: string, index: number };
@@ -57,7 +56,7 @@ export class OPGG_ChampionsPage {
             }
         }
 
-        assert(title.includes(championName), `Title does not include ${championName} - ${title}`);
+        expect(title.includes(championName), `Title does not include ${championName} - ${title}`);
 
         // need to perform a progressive scroll so that certain elements load
         await progressiveScroll(this.page, 1000);
