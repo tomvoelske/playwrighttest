@@ -1,24 +1,6 @@
-import { test, expect } from '@playwright/test';
-const {OPGG_MainPage} = require('../../pages/leagueopgg/opgg.main.page.js');
-const {OPGG_ChampionsPage} = require('../../pages/leagueopgg/opgg.champions.page.js');
-
-const fs = require('fs');
-const path = require('path');
-import {parse} from 'csv-parse';
-
-// TODO: CSV method doesn't want to play ball, hard coded for now
-
-/*
-
-let filePath = path.join(__dirname, '../../data/leagueopgg') + '/champions.csv';
-
-//const championData = parse(fs.readFileSync(filePath), {
-const championData = parse(fs.readFileSync(path.join(__dirname, '../../data/leagueopgg/champions.csv')), {
-    columns: true,
-    skip_empty_lines: true
-});
-
-*/
+import { test, expect, Page } from '@playwright/test';
+import { OPGG_MainPage } from '../../pages/leagueopgg/opgg.main.page';
+import { OPGG_ChampionsPage } from '../../pages/leagueopgg/opgg.champions.page';
 
 const champions = [
     "Aatrox", "Ahri", "Akali", "Akshan", "Alistar", "Ambessa", "Amumu", "Anivia", "Annie", "Aphelios", "Ashe", "Aurelion Sol", "Aurora", "Azir", "Bard", "Bel'Veth", "Blitzcrank", "Brand", "Braum", "Briar", "Caitlyn", "Camille", "Cassiopeia", "Cho'Gath", "Corki", "Darius", "Diana", "Dr. Mundo", 
@@ -32,9 +14,9 @@ const champions = [
 const champions_limitedTest = ['Ahri'];  // for using to test a single page only
 
 for (const champion of champions) {
-//for (const champion of champions_limitedTest) {
+// for (const champion of champions_limitedTest) {
 
-    test(`Verify that the grid button for ${champion} takes you to their page and that it is correctly assigned`, async ({page}) => {
+    test(`Verify that the grid button for ${champion} takes you to their page and that it is correctly assigned`, async ({ page }) => {
 
         test.setTimeout(60000);
 
@@ -50,4 +32,4 @@ for (const champion of champions) {
     
     });
 
-};
+}

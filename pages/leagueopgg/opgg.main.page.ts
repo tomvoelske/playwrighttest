@@ -1,34 +1,27 @@
-import { test, expect } from '@playwright/test';
+import { Page, test, expect } from '@playwright/test';
 import { goToUrl } from '../../functions/goToUrl';
 
-exports.OPGG_MainPage = class OPGG_MainPage {
+export class OPGG_MainPage {
+    private page: Page;
 
-    constructor(page) {
+    constructor(page: Page) {
         this.page = page;
     }
 
-    async navigateToPage() {
-
+    async navigateToPage(): Promise<void> {
         await goToUrl(this.page, "https://www.op.gg/");
-    
     }
 
-    async verifyTitle() {
-
+    async verifyTitle(): Promise<void> {
         await expect(this.page).toHaveTitle(/OP.GG/);
-    
     }
 
-    async clearTermsAndConditions() {
-
-        await this.page.getByText('AGREE', {exact: true}).click();
-    
+    async clearTermsAndConditions(): Promise<void> {
+        await this.page.getByText('AGREE', { exact: true }).click();
     }
 
-    async changeToTab(tabName) {
-
+    async changeToTab(tabName: string): Promise<void> {
         switch (tabName.toLowerCase()) {
-    
             case "home":
                 await this.page.click('[data-key="HOME"]');
                 break;
@@ -56,9 +49,6 @@ exports.OPGG_MainPage = class OPGG_MainPage {
                 break;
             default:
                 throw new Error("AUTOMATION FAULT - Invalid tab name");
-    
         }
-    
     }
-
 }

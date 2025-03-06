@@ -1,11 +1,11 @@
-async function scrollToBottom(page) {
+import { Page } from '@playwright/test';
 
+async function scrollToBottom(page: Page): Promise<void> {
     const maxScrolls = 100;  // limiter to prevent infinite scrolling
     let prevHeight = -1;
     let scrollCount = 0;
 
     while (scrollCount < maxScrolls) {
-
         // Execute JavaScript to scroll to the bottom of the page
         await page.evaluate(async () => window.scrollTo(0, document.body.scrollHeight));
 
@@ -19,11 +19,9 @@ async function scrollToBottom(page) {
 
         prevHeight = newHeight;
         scrollCount++;
-
     }
-    
 }
 
-module.exports = {
+export {
     scrollToBottom
-}
+};
